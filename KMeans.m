@@ -10,7 +10,6 @@ else
     NofRadomization = 5;    % Should be greater than one
 end
 
-
 segmentedImage = zeros(M, N); %initialize. This will be the output
 BestDfit = 1e10;  % Just a big number!
 minDistance=[];
@@ -19,11 +18,9 @@ totalDistance=[];
 optimumDistance=0;
 optimumRandNum=0;
 
-
 newClusterCenters=zeros(numberofClusters,1);
 % run KMeans NofRadomization times
 for KMeanNo = 1 : NofRadomization
-
     % randomize if clusterCentersIn was empty
     if NofRadomization>1
         clusterCentersIn = rand(numberofClusters, noF); %randomize initialization
@@ -40,17 +37,12 @@ for KMeanNo = 1 : NofRadomization
         end
         totalDistance(KMeanNo)=sum(rowDistance);
         clusterCentersInTemp{KMeanNo}=clusterCentersIn;
-        
         minDistance=[];
         rowDistance=[];
     end
     [optimumDistance,optimumRandNum]=min(totalDistance)
-    optimumRandomization=cell2mat(clusterCentersInTemp(1,optimumRandNum)) 
-    
-     
+    optimumRandomization=cell2mat(clusterCentersInTemp(1,optimumRandNum))   
 end
-
-
 
 iter=15;
 while ~(iter==0)
